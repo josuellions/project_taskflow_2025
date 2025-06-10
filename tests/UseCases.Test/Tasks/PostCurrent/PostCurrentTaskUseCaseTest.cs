@@ -6,34 +6,31 @@ using taskflow.API.Contracts;
 using taskflow.API.Entities;
 using taskflow.API.Enums;
 using taskflow.API.UseCases.Tasks.PostCurrent;
+using UseCases.Test.Communication.Requests;
+using UseCases.Test.Repositories.DataAccess;
 
 namespace UseCases.Test.Tasks.PostCurrent
 {
-    public class PostCurrentTaskUseCaseTest
+    public class PostCurrentTaskUseCaseTest : IClassFixture<TaskRepositoryFake>, IClassFixture<RequestTaskJsonFake>
     {
+        private readonly TaskRepositoryFake _repositoryFake;
+        private readonly RequestTaskJsonFake _requestTaskJsonFake;
+
+        public PostCurrentTaskUseCaseTest(TaskRepositoryFake repositoryFake, RequestTaskJsonFake requestTaskJsonFake)
+        {
+            _repositoryFake = repositoryFake;
+            _requestTaskJsonFake = requestTaskJsonFake;
+        }
+
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
         public void Create(int projectId)
         {
-            var request = new Faker<RequestTaskJson>()
-            .RuleFor(request => request.Name, f => f.Name.FindName())
-            .RuleFor(request => request.PriorityId, f => f.PickRandom<Priority>())
-            .RuleFor(request => request.StatusId, f => f.PickRandom<Status>())
-            .RuleFor(request => request.UserId, f => f.Random.Number(1, 100))
-            .RuleFor(request => request.Description, f => f.Lorem.Word())
-            .Generate();
+            var request = _requestTaskJsonFake.CreateRequestTaskJson();
 
-            var entity = new Faker<Tarefa>()
-            .RuleFor(entity => entity.Id, f => f.Random.Number(1, 100))
-            .RuleFor(entity => entity.Name, request.Name)
-            .RuleFor(entity => entity.ProjectId, projectId)
-            .RuleFor(entity => entity.PriorityId, (Priority) request.PriorityId)
-            .RuleFor(entity => entity.StatusId, f => (Status) request.StatusId)
-            .RuleFor(entity => entity.UserId, f => request.UserId)
-            .RuleFor(entity => entity.Description, f => f.Lorem.Word())
-            .Generate();
+            var entity = _repositoryFake.CreateTaskEntity(projectId, 1, 100, request);
 
             var taskRepository = new Mock<ITaskRepository>();
             taskRepository.Setup(i => i.Create(entity)).ReturnsAsync(entity.Id);
