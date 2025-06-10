@@ -20,7 +20,7 @@ namespace taskflow.API.UseCases.Tasks.PostCurrent
             _repositoryProject = repositoryProject;
         }
 
-        public int Execute(int projetcId, RequestTaskJson request)
+        public async Task<int> Execute(int projetcId, RequestTaskJson request)
         {
             Validator(projetcId, request);
 
@@ -36,9 +36,9 @@ namespace taskflow.API.UseCases.Tasks.PostCurrent
                 Description = request.Description,
             };
 
-            _repository.Create(task);
+           var result = await _repository.Create(task);
 
-            return task.Id;
+            return result;
         }
 
         private void Validator(int projetoId, RequestTaskJson request)

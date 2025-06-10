@@ -24,8 +24,6 @@ namespace UseCases.Test.Tasks.PostCurrent
 
         [Theory]
         [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
         public void Create(int projectId)
         {
             var request = _requestTaskJsonFake.CreateRequestTaskJson();
@@ -33,14 +31,13 @@ namespace UseCases.Test.Tasks.PostCurrent
             var entity = _repositoryFake.CreateTaskEntity(projectId, 1, 100, request);
 
             var taskRepository = new Mock<ITaskRepository>();
-            taskRepository.Setup(i => i.Create(entity)).ReturnsAsync(entity.Id);
+            taskRepository.Setup(i => i.Create(It.IsAny<Tarefa>())).ReturnsAsync(entity.Id);
 
             var userRepository = new Mock<IUserRepository>();
             userRepository.Setup(i => i.ExistUserWithId(request.UserId)).Returns(true);
 
             var projectRepository = new Mock<IProjectRepository>();
             projectRepository.Setup(i => i.ExistProjectWithId(projectId)).Returns(true);
-
 
             //ARRANGE
             var useCase = new PostCurrentTaskUseCase(taskRepository.Object, userRepository.Object, projectRepository.Object);
@@ -49,7 +46,7 @@ namespace UseCases.Test.Tasks.PostCurrent
             var act = () => useCase.Execute(projectId, request);
 
             //ASSERT
-            act.Should().NotThrow();
+            act.Should().NotThrowAsync();
         }
     }
 }

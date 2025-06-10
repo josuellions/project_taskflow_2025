@@ -9,7 +9,7 @@
 
 ##### About
 
-Desenvolvimento de uma API ASP.NET Core 8 C# que permite aos usuários organizar e monitorar suas tarefas diárias, bem como colaborares e equipe.
+Desenvolvimento de uma API ASP.NET Core 8 C# que permite aos usuários organizar e monitorar suas tarefas diárias, bem como colaborar em equipe.
 
 - ASP.NET Core 8 C#,
 - Microsoft.EntityFrameworkCore.Sqlite,

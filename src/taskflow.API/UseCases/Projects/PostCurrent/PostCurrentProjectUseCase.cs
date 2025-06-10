@@ -30,9 +30,9 @@ namespace taskflow.API.UseCases.Projects.PostCurrent
                 DataUp = DateTime.UtcNow,
             };
 
-            _repository.Create(project);
+            var result = _repository.Create(project);
 
-            return project.Id;
+            return result;
         }
 
         private void Validator(RequestProjectJson request)
@@ -49,7 +49,7 @@ namespace taskflow.API.UseCases.Projects.PostCurrent
 
             if (Enum.IsDefined(typeof(Status), request.StatusId) == false)
             {
-                throw new ErrorOnValidationException("Informe o StatuId valido de um para projeto!");
+                throw new ErrorOnValidationException("Informe o StatuId valido para projeto!");
             }
 
             _repositoryUser.ExistUserWithId(request.UserId);
