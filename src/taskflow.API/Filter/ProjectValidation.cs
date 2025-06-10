@@ -15,15 +15,10 @@ namespace taskflow.API.Filter
             {
                 var exist = _repository.ExistProjectWithId(projectId);
 
-                //if(exist == false)
-                //{
-                //    throw new Exception("Projeto invalido!");
-                //}
-
-
-            return exist;
+                return exist;
             }
-            catch (NotFoundException ex) {
+            catch (NotFoundException ex)
+            {
                 throw new NotFoundException(ex.Message);
             }
         }

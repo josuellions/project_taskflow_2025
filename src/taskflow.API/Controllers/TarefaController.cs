@@ -30,6 +30,7 @@ namespace taskflow.API.Controllers
         [Route("{projectId}")]
         [ProducesResponseType(typeof(Tarefa), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status409Conflict)] 
         public ActionResult Create(
             [FromRoute] int projectId,
             [FromBody] RequestTaskJson request,

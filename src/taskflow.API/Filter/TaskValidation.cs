@@ -16,7 +16,7 @@ namespace taskflow.API.Filter
             {
                 var totalTasks = _repository.GetTotalTask(projectId);
 
-                var isMaximo = totalTasks > LIMITE_MAXIMO_TASKS;
+                var isMaximo = totalTasks == LIMITE_MAXIMO_TASKS;
 
                 return isMaximo;
 

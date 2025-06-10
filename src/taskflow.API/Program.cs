@@ -38,6 +38,9 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped <ITaskHistoryRepository, TaskHistoryRepository > ();
 
+//URL Lowecase
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
 //Custom tratativas de error
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 

@@ -12,6 +12,7 @@ Desenvolvimento de uma API ASP.NET Core 8 C# que permite aos usuários organizar
 - Microsoft.EntityFrameworkCore.Sqlite,
 - Entity Framework,
 - FluentAssert,
+- Swagger,
 - Bogus,
 - Moq
 

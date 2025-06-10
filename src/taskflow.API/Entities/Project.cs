@@ -18,9 +18,9 @@ namespace taskflow.API.Entities
         [Required]
         public int UserId { get; set; }
 
-        public DateTime DataAt { get; set; } = DateTime.Now;
+        public DateTime DataAt { get; set; } = DateTime.UtcNow;
         
-        public DateTime DataUp { get; set; } = DateTime.Now;
+        public DateTime DataUp { get; set; } = DateTime.UtcNow;
         
         public ICollection<Tarefa> Tasks { get; set; } = new List<Tarefa>();
     }

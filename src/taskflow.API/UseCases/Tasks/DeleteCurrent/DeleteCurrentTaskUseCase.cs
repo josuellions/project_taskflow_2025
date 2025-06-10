@@ -1,7 +1,5 @@
 ﻿using taskflow.API.Communication.Requests;
 using taskflow.API.Contracts;
-using taskflow.API.Entities;
-using taskflow.API.Enums;
 using taskflow.API.Exceptions;
 
 namespace taskflow.API.UseCases.Tasks.DeleteCurrent

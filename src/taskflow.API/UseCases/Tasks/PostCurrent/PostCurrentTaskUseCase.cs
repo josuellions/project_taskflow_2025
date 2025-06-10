@@ -31,8 +31,8 @@ namespace taskflow.API.UseCases.Tasks.PostCurrent
                 StatusId = Status.PENDENTE,
                 PriorityId = (Priority)request.PriorityId,
                 UserId = request.UserId,
-                DateAt = DateTime.Now,
-                DateUp = DateTime.Now,
+                DateAt = DateTime.UtcNow,
+                DateUp = DateTime.UtcNow,
                 Description = request.Description,
             };
 
@@ -52,7 +52,7 @@ namespace taskflow.API.UseCases.Tasks.PostCurrent
 
             if (TaskValidation.GetProjectTotalTask(projetoId))
             {
-                throw new ErrorOnValidationException("Este projeto já atingiu o limite máximo de 20 tarefas permitidas!");
+                throw new ConflictException("Este projeto já atingiu o limite máximo de 20 tarefas permitidas!");
             }
 
             if (string.IsNullOrWhiteSpace(request.Name))

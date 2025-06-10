@@ -1,20 +1,19 @@
 ﻿using Moq;
+using Bogus;
 using FluentAssertions;
 using taskflow.API.Entities;
 using taskflow.API.Contracts;
 using taskflow.API.UseCases.Projects.GetCurrent;
-using Bogus;
 using taskflow.API.Enums;
 
 namespace UseCases.Test.Projects.GetCurrent
 {
     public class GetCurrentProjectUseCaseTest
     {
-        [Fact]
-        public void Success()
+        private Project CreateProject(int startId, int endId)
         {
             var entity = new Faker<Project>()
-            .RuleFor(project => project.Id, f => f.Random.Number(1, 100))
+            .RuleFor(project => project.Id, f => f.Random.Number(startId, endId))
             .RuleFor(project => project.Name, f => f.Name.FirstName())
             .RuleFor(project => project.UserId, f => f.Random.Number(1, 100))
             .RuleFor(project => project.StatusId, f => f.PickRandom<Status>())
@@ -34,6 +33,14 @@ namespace UseCases.Test.Projects.GetCurrent
                     DateUp = f.Date.Past()
                 }
             }).Generate();
+
+            return entity;
+        }
+
+        [Fact]
+        public void Success()
+        {
+            var entity = CreateProject(1, 100);
 
             var mock = new Mock<IProjectRepository>();
             mock.Setup(i => i.GetCurrentId(entity.Id)).Returns(entity);

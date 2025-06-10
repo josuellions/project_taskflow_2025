@@ -28,7 +28,7 @@ namespace taskflow.API.UseCases.Tasks.PutCurrent
                 Id = id,
                 Name = request.Name,
                 UserId = request.UserId,
-                DateUp = DateTime.Now,
+                DateUp = DateTime.UtcNow,
                 StatusId = (Status)request.StatusId,
                 Description = request.Description,
             };

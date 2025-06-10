@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Xml;
+﻿using Microsoft.EntityFrameworkCore;
 using taskflow.API.Contracts;
 using taskflow.API.Entities;
 using taskflow.API.Enums;
@@ -31,7 +28,7 @@ namespace taskflow.API.Repositories.DataAccess
                 UserId = userId,
                 StatusId = task.StatusId,
                 ActionId = actionInfo.ActionId,
-                DateAt = DateTime.Now,
+                DateAt = DateTime.UtcNow,
                 TaskDescription = task.Description,
                 Description = actionInfo.Description,
             };

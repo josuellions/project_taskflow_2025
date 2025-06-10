@@ -26,8 +26,8 @@ namespace taskflow.API.UseCases.Projects.PostCurrent
                 Name = request.Name,
                 StatusId = (Status)request.StatusId,
                 UserId = request.UserId,
-                DataAt = DateTime.Now,
-                DataUp = DateTime.Now,
+                DataAt = DateTime.UtcNow,
+                DataUp = DateTime.UtcNow,
             };
 
             _repository.Create(project);

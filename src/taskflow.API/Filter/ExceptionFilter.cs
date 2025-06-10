@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Net;
 using taskflow.API.Communication.Responses;
+using System.Net;
 using taskflow.API.Exceptions;
 
 namespace taskflow.API.Filter
@@ -35,6 +35,12 @@ namespace taskflow.API.Filter
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 context.Result = new BadRequestObjectResult(new ResponseErrorJson(context.Exception.Message));
             }
+            else if (context.Exception is ConflictException)
+            {
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Conflict;
+                context.Result = new ConflictObjectResult(new ResponseErrorJson(context.Exception.Message));
+            }
+            
         }
 
         private void ThrowUnkowError(ExceptionContext context)

@@ -27,7 +27,7 @@ namespace taskflow.API.UseCases.Projects.PutCurrent
                 Name = request.Name,
                 StatusId = request.StatusId,
                 UserId = request.UserId,
-                DataUp = DateTime.Now,
+                DataUp = DateTime.UtcNow,
             };
 
             _repository.Update(project);

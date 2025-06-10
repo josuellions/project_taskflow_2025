@@ -13,7 +13,7 @@ namespace taskflow.API.Entities
         public int TaskId { get; set; }
 
         [Required]
-        public string? TaskDescription { get; set; }
+        public string TaskDescription { get; set; } = string.Empty;
 
         [Required]
         public int UserId { get; set; }
@@ -24,8 +24,8 @@ namespace taskflow.API.Entities
         [Required]
         public Actions ActionId { get; set; }
 
-        public DateTime DateAt { get; set; }
+        public DateTime DateAt { get; set; } = DateTime.UtcNow;
 
-        public string? Description { get; set; }
+        public string Description { get; set; } = string.Empty ;
     }
 }
