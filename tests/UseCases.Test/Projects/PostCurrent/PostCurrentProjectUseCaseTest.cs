@@ -22,7 +22,7 @@ namespace UseCases.Test.Projects.PostCurrent
 
         [Theory]
         [InlineData(1)]
-        public void Create(int userId)
+        public void Success(int userId)
         {
             //Create User
             var useRepository = new Mock<IUserRepository>();
@@ -45,7 +45,7 @@ namespace UseCases.Test.Projects.PostCurrent
 
         [Theory]
         [InlineData(1)]
-        public void Success(int userId)
+        public void Create(int userId)
         {
             //Create User
             var useRepository = new Mock<IUserRepository>();
@@ -65,7 +65,6 @@ namespace UseCases.Test.Projects.PostCurrent
 
             result.Should().Be(entity.Id);
         }
-
 
         [Theory]
         [InlineData(1)]

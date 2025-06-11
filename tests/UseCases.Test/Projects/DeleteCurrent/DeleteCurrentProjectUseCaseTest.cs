@@ -1,12 +1,10 @@
 ﻿using FluentAssertions;
 using Moq;
 using taskflow.API.Contracts;
-using taskflow.API.Enums;
 using taskflow.API.Exceptions;
 using taskflow.API.UseCases.Projects.DeleteCurrent;
 using UseCases.Test.Communication.Requests;
 using UseCases.Test.Repositories.DataAccess;
-using Xunit;
 
 namespace UseCases.Test.Projects.DeleteCurrent
 {

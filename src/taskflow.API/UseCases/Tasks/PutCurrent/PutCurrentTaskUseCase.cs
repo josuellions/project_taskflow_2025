@@ -19,7 +19,7 @@ namespace taskflow.API.UseCases.Tasks.PutCurrent
             _repositoryProject = repositoryProject;
         }
 
-        public Tarefa Execute(int id, RequestTaskJson request) 
+        public async Task<Tarefa?> Execute(int id, RequestTaskJson request) 
         {
             Validator(id, request);
 
@@ -33,9 +33,9 @@ namespace taskflow.API.UseCases.Tasks.PutCurrent
                 Description = request.Description,
             };
 
-            _repository.Update(task);
+            var result = await _repository.Update(task);
 
-            return task;
+            return result;
         }
 
         private void Validator(int id, RequestTaskJson request)

@@ -7,10 +7,10 @@ namespace UseCases.Test.Repositories.DataAccess
 {
     public class TaskRepositoryFake
     {
-        public Tarefa CreateTaskEntity(int projectId, int startId, int endId, RequestTaskJson request)
+        public Tarefa CreateTaskEntity(RequestTaskJson request, int projectId, int startId = 1, int endId = 100)
         {
             var entity = new Faker<Tarefa>("pt_BR")
-           .RuleFor(entity => entity.Id, f => f.Random.Number(1, 100))
+           .RuleFor(entity => entity.Id, f => f.Random.Number(startId, endId))
            .RuleFor(entity => entity.Name, request.Name)
            .RuleFor(entity => entity.ProjectId, projectId)
            .RuleFor(entity => entity.PriorityId, (Priority)request.PriorityId)

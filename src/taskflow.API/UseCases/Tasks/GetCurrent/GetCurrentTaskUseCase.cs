@@ -15,14 +15,16 @@ namespace taskflow.API.UseCases.Tasks.GetCurrent
         {
             Validator(id);
 
-            return _repository.GetCurrentId(id);
+            var result = _repository.GetCurrentId(id);
+
+            return result;
         }
 
         public void Validator(int id)
         {
             if (id <= 0)
             {
-                throw new NotFoundException("Tarefa deve ter Id maior que zero!");
+                throw new NotFoundException("Tarefa deve ter Id valido e maior que zero!");
             }
         }
     }

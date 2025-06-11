@@ -8,13 +8,11 @@ namespace taskflow.API.UseCases.Tasks.DeleteCurrent
     {
         private readonly ITaskRepository _repository;
         private readonly IUserRepository _repositoryUser;
-        private readonly IProjectRepository _repositoryProject;
 
-        public DeleteCurrentTaskUseCase(ITaskRepository repository, IUserRepository userRepository, IProjectRepository repositoryProject)
+        public DeleteCurrentTaskUseCase(ITaskRepository repository, IUserRepository userRepository)
         {
             _repository = repository;
             _repositoryUser = userRepository;
-            _repositoryProject = repositoryProject;
         }
 
         public void Execute(int id, RequestTaskJson request)
@@ -22,7 +20,6 @@ namespace taskflow.API.UseCases.Tasks.DeleteCurrent
             Validator(id, request);
 
             _repository.Delete(id);
-
         }
 
         private void Validator(int id, RequestTaskJson request)

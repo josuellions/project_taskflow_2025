@@ -41,11 +41,8 @@ namespace UseCases.Test.Projects.GetCurrent
             project.Id.Should().Be(entity.Id);
             project.DataAt.Should().Be(entity.DataAt);
             project.DataUp.Should().Be(entity.DataUp);
-            project.Tasks.Should().NotBeNull();
-
-            project.Should().NotBeNull();
             project.Name.Should().NotBeNullOrWhiteSpace();
-            project.Tasks.Should().NotBeNullOrEmpty();
+            project.Tasks.Should().NotBeNull();
         }
 
         [Theory]

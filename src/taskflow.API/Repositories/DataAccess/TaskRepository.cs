@@ -56,12 +56,6 @@ namespace taskflow.API.Repositories.DataAccess
                 throw new NotFoundException("A Tarefa não foi encontrado no banco dados!");
             }
 
-            result.Name = task.Name;
-            result.DateUp = task.DateUp;
-            result.UserId = task.UserId;
-            result.StatusId = task.StatusId;
-            result.Description = task.Description;
-
             await _dbContext.SaveChangesAsync();
 
             await _repositoryHistory.SaveChangesAsync(task.UserId, task, EntityState.Modified);
