@@ -34,13 +34,6 @@ namespace taskflow.API.UseCases.Report.GetCurrent
                 throw new TaskFlowInException(nameof(request));
             }
 
-            var isDateValid = DateTime.TryParse(request.DateStart.ToString(), out DateTime dateValidConvert);
-            
-            if(isDateValid == false)
-            {
-                throw new NotFoundException("Informe uma data válida!");
-            }
-
             if (UserType.GERENTE != (UserType)request.UserTypeId) 
             {
                 throw new NotFoundException("Tipo de usuário inválido ou sem permissão para acessar o relatório!");

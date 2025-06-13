@@ -1,10 +1,7 @@
-﻿using Moq;
-using Bogus;
-using FluentAssertions;
-using taskflow.API.Entities;
+﻿using FluentAssertions;
+using Moq;
 using taskflow.API.Contracts;
 using taskflow.API.UseCases.Projects.GetCurrent;
-using taskflow.API.Enums;
 using UseCases.Test.Communication.Requests;
 using UseCases.Test.Repositories.DataAccess;
 
